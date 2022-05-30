@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrays</title>
+    <script src="main.js"></script>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+<table class="mainTable">
+    <tbody>
+    <tr>
+        <td>
+            <label>Количество сотрудников:
+                <input class="parameterInput" id="n" type="text">
+            </label>
+            <button onclick="generateStudents(n.value)">Сгенерировать значения</button>
+        </td>
+        <td>
+            <label>JSON:
+                <input id="str" type="text"/>
+            </label>
+            <button onclick="loadJSON(str.value)">Загрузить</button>
+            <button onclick="uploadJSON()">Выгрузить</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Год:
+                <input class="parameterInput" id="year" type="text">
+            </label>
+            <button onclick="removeReceiptDateByYear(year.value)">Убрать данные о дате поступления</button>
+        </td>
+        <td>
+            <button onclick="addAverage()">Добавить информацию о среднем балле</button>
+        </td>
+        <td>
+            <button onclick="sortByAverageMark()">Сортировать по среднему баллу</button>
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table id="studentsTable">
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

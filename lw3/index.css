@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: whitesmoke;
+    color: black;
+    padding: 0px 20px;
+}
+
+input{
+    border: 2px solid cornflowerblue;
+    width: 70px;
+}
+
+.b_tab{
+    border: none;
+    background-color: cornflowerblue;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.b_tab:hover{
+    cursor: pointer;
+    background-color: cornflowerblue;
+}

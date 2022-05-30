@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web-03</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body id="body">
+<h1>Табуляция функции</h1>
+<p>
+    <label for="x0">Введите min X</label>
+    <input id="x0" type="number" required/>
+</p>
+<p>
+    <label for="xn">Введите max X</label>
+    <input id="xn" type="number" required/>
+</p>
+<p>
+    <label for="y0">Введите min Y</label>
+    <input id="y0" type="number" required/>
+</p>
+<p>
+    <label for="yn">Введите max Y</label>
+    <input id="yn" type="number" required/>
+</p>
+<p>
+    <label for="StepX">Введите шаг табуляции x</label>
+    <input id="stepX" type="number" required />
+</p>
+<p>
+    <label for="StepY">Введите шаг табуляции y</label>
+    <input id="stepY" type="number" required />
+</p>
+<p>
+    <label for="a">Введите a</label>
+    <input id="a" name="par_a" type="number" required/>
+</p>
+<p>
+    <label for="nm1">Введите nm1</label>
+    <input id="nm1" type="number" min="2" max="6" required/>
+</p>
+<p>
+    <label for="nm2">Введите nm2</label>
+    <input id="nm2" type="number" min="2" max="6" required/>
+</p>
+<button type="submit" class="b_tab" onclick="tab()">Табулировать</button>
+
+<div id="result">
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.mainTable{
+    margin: auto;
+    border: 0;
+}
+
+.mainTable td{
+    padding: 20px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.arrayDiv table{
+    margin: auto;
+}
+
+.arrayDiv{
+    margin: 20px;
+}
+
+.panel{
+    margin: 20px;
+}
+
+.button{
+    margin: 10px;
+}

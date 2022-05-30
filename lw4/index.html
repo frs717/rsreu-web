@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LW4</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body id="body">
+<div class="content">
+    <h3>Size</h3>
+        <label for="size">Size</label>
+        <input type="number" id="size">
+        <button type="button" onclick="buildTable()">Build</button>
+
+    <h3>Average value</h3>
+        <label for="radioRed">Red</label>
+        <input type="radio" name="radio" id="radioRed" value="red" checked>
+        <label for="radioAqua">Aqua</label>
+        <input type="radio" name="radio" id="radioAqua" value="aqua">
+        <button type="button" onclick="setAverage()">Set average</button>
+
+    <h3>Value</h3>
+        <label for="value">Value</label>
+        <input type="number" id="value">
+        <button type="button" onclick="deleteRows()">Delete rows</button>
+
+    <h3>Transformation</h3>
+    <button type="button" onclick="transform()">Transform</button>
+
+</div>
+<script src="index.js"></script>
+</body>
+</html>

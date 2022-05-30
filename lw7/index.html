@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Functions</title>
+    <script src="index.js"></script>
+    <link href="index.css" rel="stylesheet"/>
+</head>
+<body>
+<table class="mainTable">
+    <tbody>
+    <tr onchange="changeParameters()">
+        <td>
+            <label>Диапазон:
+                <input class="parameterInput" id="a" type="text" value="8" oninput="changeParameters()">
+                (<input class="parameterInput" id="h" type="text" value="0.1" oninput="changeParameters()">)
+                <input class="parameterInput" id="b" type="text" value="10" oninput="changeParameters()">
+            </label>
+
+        </td><br>
+        <form id="characteristics">
+                <h3>Вид функции</h3>
+                <label>
+                    <input checked name="radio" type="radio" value="f1"/>
+                </label>f1<br>
+                <label>
+                    <input name="radio" type="radio" value="f2"/>
+                </label>f2<br>
+                <label>
+                    <input name="radio" type="radio" value="f3"/>
+                </label>f3<br>
+                <h3>Характеристики</h3>
+                <label>
+                    <input checked id="avg" type="checkbox"/>
+                </label>Максимум<br>
+                <label>
+                    <input checked id="nullCount" type="checkbox"/>
+                </label>Кол-во точек разрыва<br>
+                <label>
+                    <input checked id="isIncreasing" type="checkbox"/>
+                </label>Является ли монотонно-возрастающей<br>
+                <h3>Вариант функции</h3>
+                <label>
+                    <input checked id="memoize" type="checkbox"/>
+                </label>Мемоизированная<br>
+                <label>
+                    <input checked id="debug" type="checkbox"/>
+                </label>Отладочная<br>
+                <label>
+                    <input checked id="saveCallsCount" type="checkbox"/>
+                </label>Количество вызовов<br>
+        </form>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <button onclick="start()">Рассчитать характеристики</button>
+        </td>
+    </tr>
+    <tr id="resultRow" hidden>
+        <td id="result">
+
+        </td>
+        <td id="memoizeContainer" hidden >
+                <h3>Мемоизация</h3>
+                <div id="cashSize"></div>
+                <label>Значение:
+                    <input class="parameterInput" id="memoizeX" type="text" value="">
+                </label><br>
+                <button class="button" onclick="getFromCache(memoizeX.value)">Получить</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

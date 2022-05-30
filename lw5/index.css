@@ -1,0 +1,40 @@
+input{
+    border: 1px solid #6495ED;
+    width: 50px;
+    display:block;
+}
+
+button{
+    margin-top: 15px;
+    border: none;
+    background-color: #6495ED;
+    border-radius: 5px;
+    padding: 5px;
+    display:block;
+}
+
+.content{
+    margin: 0 auto;
+    width: 300px;
+    border: 2px solid #6495ED;
+    padding: 15px;
+    display:block;
+
+}
+
+table{
+    border-spacing: 0px;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+td{
+    width: 18px;
+    height: 25px;
+    border-spacing: 0;
+    color: black;
+    text-shadow:
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 5px #fff;
+}
