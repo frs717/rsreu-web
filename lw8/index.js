@@ -65,11 +65,11 @@ function drop() {
 }
 
 function outputLogs() {
-    currentVector.logActions();
+    currentVector.printLogs();
 }
 
 function clearLogs() {
-    currentVector.clearActions();
+    currentVector.clearLogs();
 }
 
 function onChangeActionSelect() {
@@ -89,11 +89,23 @@ function output(text) {
 
 
 function start() {
+    if (!isNumeric(document.getElementById("vectorN").value)) {
+        alert("Введите число");
+        return new Error("Not number")
+    }
+    if (!isInteger(document.getElementById("vectorN").value)) {
+        alert("Введите целое число");
+        return new Error("Not integer");
+    }
     N = parseInt(document.getElementById("vectorN").value);
     document.getElementById("init").hidden = true;
     createVectorPointsInputs(N);
     createAdditionalVectorPointsInputs(N);
     document.getElementById("setting").hidden = false;
+}
+
+function isInteger(value) {
+    return (value % 1 === 0);
 }
 
 function outputVector() {
@@ -173,76 +185,32 @@ function isNumeric(value) {
 
 //////////////////////////////////////////////////////////////
 
+Vector.prototype = new BaseObject();
+
+function BaseObject() {
+    this.actions = [];
+    this.log = (functionName, arg) => {
+        Vector.prototype.actions.push({
+            "method": functionName,
+            "time": JSON.stringify(new Date()),
+            "arg": arg
+        });
+    }
+    this.clearLogs = () => {
+        Vector.prototype.actions.length = 0;
+    };
+    this.printLogs = () => {
+        console.log(Vector.prototype.actions);
+    }
+}
+
 function Vector(n, coords) {
     this.n = n;
     this.coords = coords.length === n ? coords : [];
+}
 
-    this.toString = () => {
-        this.registerAction("toString");
-        return "Vector " + getString(this.coords);
-    }
-
-    this.setCoords = (points) => {
-        this.registerAction("setCoords", points);
-        if (points.length !== this.n) {
-            return new Error("Coords count not equal vector dimension");
-        }
-        this.coords = points;
-        return this;
-    }
-
-    this.getCoords = () => {
-        this.registerAction("getCoords");
-        return this.coords;
-    }
-
-    this.getVectorLength = () => {
-        this.registerAction("getVectorLength");
-        return Math.sqrt(this.coords.reduce((previousValue, currentValue) => previousValue + Math.pow(currentValue, 2), 0));
-    }
-
-    this.mulByNumber = (number) => {
-        this.registerAction("mulByNumber", number);
-        let temp = this.coords.map((item) => item * number);
-        return new Vector(this.n, temp);
-    }
-
-    this.calculateScalarMul = (vector) => {
-        this.registerAction("calculateScalarMul", vector);
-        if (vector.n !== this.n) {
-            return new Error("Different vector dimensions");
-        }
-        let temp = [];
-        for (let i = 0; i < this.n; i++) {
-            temp.push(this.coords[i] * vector.coords[i]);
-        }
-        return temp.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
-    }
-
-    this.addVector = (vector) => {
-        this.registerAction("addVector", vector);
-        if (vector.n !== this.n) {
-            return new Error("Different vector dimensions");
-        }
-        let temp = [];
-        for (let i = 0; i < this.n; i++) {
-            temp.push(this.coords[i] + vector.coords[i]);
-        }
-        return new Vector(this.n, temp);
-    }
-
-    this.mulVectorByComponents = (vector) => {
-        this.registerAction("mulVectorByComponents", vector);
-        if (vector.n !== this.n) {
-            return new Error("Different vector dimensions");
-        }
-        let temp = [];
-        for (let i = 0; i < this.n; i++) {
-            temp.push(this.coords[i] * vector.coords[i]);
-        }
-        return new Vector(this.n, temp);
-    }
-
+Vector.prototype.toString = function() {
+    this.log("toString");
     function getString(point) {
         let string = "(";
         for (let i = 0; i < point.length; i++) {
@@ -255,23 +223,66 @@ function Vector(n, coords) {
         return string;
     }
 
+    return "Vector " + getString(this.coords);
 }
 
+Vector.prototype.setCoords = function(points) {
+    this.log("setCoords", points);
+    if (points.length !== this.n) {
+        return new Error("Coords count not equal vector dimension");
+    }
+    this.coords = points;
+    return this;
+}
 
-Vector.prototype.actions = [];
+Vector.prototype.getCoords = function() {
+    this.log("getCoords");
+    return this.coords;
+}
 
-Vector.prototype.registerAction = (functionName, arg) => {
-    Vector.prototype.actions.push({
-        "function": functionName,
-        "time": JSON.stringify(new Date()),
-        "args": arg
-    });
-};
+Vector.prototype.getVectorLength = function() {
+    this.log("getVectorLength");
+    return Math.sqrt(this.coords.reduce((previousValue, currentValue) => previousValue + Math.pow(currentValue, 2), 0));
+}
 
-Vector.prototype.clearActions = () => {
-    Vector.prototype.actions.length = 0;
-};
+Vector.prototype.mulByNumber = function(number) {
+    this.log("mulByNumber", number);
+    let temp = this.coords.map((item) => item * number);
+    return new Vector(this.n, temp);
+}
 
-Vector.prototype.logActions = () => {
-    console.log(Vector.prototype.actions);
-};
+Vector.prototype.calculateScalarMul = function(vector) {
+    this.log("calculateScalarMul", vector);
+    if (vector.n !== this.n) {
+        return new Error("Different vector dimensions");
+    }
+    let temp = [];
+    for (let i = 0; i < this.n; i++) {
+        temp.push(this.coords[i] * vector.coords[i]);
+    }
+    return temp.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+}
+
+Vector.prototype.addVector = function(vector) {
+    this.log("addVector", vector);
+    if (vector.n !== this.n) {
+        return new Error("Different vector dimensions");
+    }
+    let temp = [];
+    for (let i = 0; i < this.n; i++) {
+        temp.push(this.coords[i] + vector.coords[i]);
+    }
+    return new Vector(this.n, temp);
+}
+
+Vector.prototype.mulVectorByComponents = function(vector) {
+    this.log("mulVectorByComponents", vector);
+    if (vector.n !== this.n) {
+        return new Error("Different vector dimensions");
+    }
+    let temp = [];
+    for (let i = 0; i < this.n; i++) {
+        temp.push(this.coords[i] * vector.coords[i]);
+    }
+    return new Vector(this.n, temp);
+}

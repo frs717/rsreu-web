@@ -262,19 +262,21 @@ function addAverage() {
 function removeReceiptDateByYear(year) {
     if (!isNumeric(year)) {
         window.alert("Введеное значение года!");
-        document.getElementById("minValue").value = "";
         return;
     }
 
     if (!isInteger(year)) {
         window.alert("Введеное значение года не целое число!");
-        document.getElementById("minValue").value = "";
         return;
     }
 
-    if (year < 0) {
+    if (year < 1990) {
         window.alert("Введеное значение года слишком маленькое!");
-        document.getElementById("minValue").value = "";
+        return;
+    }
+
+    if (year > 2020) {
+        window.alert("Введеное значение года слишком большое!");
         return;
     }
 

@@ -22,7 +22,6 @@ function memoize(f) {
         return `${arguments.length}:${[].join.call([].map.call(arguments, (item) => item.toFixed(3)), " ")}`;
     }
 
-
     function memF() {
         let key = getKey(arguments);
         if (key in cache) {
@@ -31,7 +30,6 @@ function memoize(f) {
             return cache[key] = f.apply(this, arguments);
         }
     }
-
 
     memF.getPrecalculatedValue = function () {
         let key = getKey(arguments);
@@ -105,6 +103,7 @@ function getCallsCount() {
 function moveFunctions(source, recipient) {
     for (let func in source) {
         recipient[func] = source[func];
+       // alert(func)
     }
 }
 

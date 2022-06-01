@@ -43,8 +43,7 @@ function tab() {
     stepY = parseFloat(stepY);
 
     if (((x0 > xn && stepX < 0) || (x0 < xn && stepX > 0)) && ((y0 > yn && stepY < 0) || (y0 < yn && stepY > 0)) &&
-        nm1 >= 2 && nm1 <= 6 && nm2 >= 2 && nm2 <= 6 && isInteger(nm1) && isInteger(nm2) && isInteger(y0)
-        && isInteger(yn) && isInteger(x0) && isInteger(xn) && isInteger(stepX) && isInteger(stepY)) {
+        nm1 >= 2 && nm1 <= 6 && nm2 >= 2 && nm2 <= 6 && isInteger(nm1) && isInteger(nm2)) {
         let minF;
         let maxF;
         let f;
